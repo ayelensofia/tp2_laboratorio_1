@@ -1,0 +1,19 @@
+
+
+#ifndef SECTOR_H_
+#define SECTOR_H_
+
+struct
+{
+	int id;
+	char descripcion[21];
+
+}typedef Sector;
+
+int harcodearSector(Sector[],int);
+int printASector(Sector);
+int printSectors(Sector[],int);
+int searchIdSector(Sector[],int,int);
+int getIdSector(char[],char[],char[],char[],Sector[],int);
+
+#endif /* SECTOR_H_ */

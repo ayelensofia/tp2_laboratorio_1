@@ -1,0 +1,34 @@
+
+#ifndef ARRAYEMPLOYEES_H_
+#define ARRAYEMPLOYEES_H_
+#include <stdio.h>
+#define FREE 0
+#define OCCUPIED 1
+#include "gets.h"
+#include <string.h>
+
+struct
+{
+	int id;
+	char name[51];
+	char lastName[51];
+	float salary;
+	int sector;
+	int isEmpty;
+
+}typedef Employee;
+
+int initEmployees(Employee[],int);
+int searchFreeEmployee(Employee[],int);
+int findEmployeeById(Employee[],int,int);
+int addEmployees(Employee[],int,int,char[],char[],float,int);
+int getIdEmployeeDelete(char[],char[],char[],char[],Employee[],int);
+int getIdEmployeeModify(char[],char[],char[],char[],Employee[],int);
+int modifyEmployee(Employee[],int,int);
+int removeEmployee(Employee[],int,int);
+int sortEmployee(Employee[],int,int);
+int printEmployee(Employee[],int);
+int printAemployee(Employee);
+int generateId(Employee[],int,int);
+int searchIdEmployee(Employee[],int,int);
+#endif /* ARRAYEMPLOYEES_H_ */

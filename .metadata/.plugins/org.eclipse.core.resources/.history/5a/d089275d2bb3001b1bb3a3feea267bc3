@@ -1,0 +1,79 @@
+#include "ArrayEmployees.h"
+int initEmployees(Employee arrayEmployees[],int len)
+{
+	int i;
+	int retorno;
+
+	retorno = -1;
+	for(i=0;i<len;i++)
+	{
+		arrayEmployees[i].isEmpty = 0;
+		retorno = 0;
+	}
+
+	return retorno;
+}
+int findEmployeeById(Employee arrayEmployees[],int len,int id)
+{
+	int i;
+	int index;
+
+	index = -1;
+
+	for(i=0;i<len;i++)
+	    {
+	        if(arrayEmployees[i].id == id)
+	        {
+	            index = i;
+	            break;
+
+	        }
+	    }
+
+	return index;
+
+}
+int generateId(Employee arrayEmployees[],int len,int idInitiation)
+{
+	int i;
+	    int id;
+	    int index;
+
+	    index = BuscarLibreTrabajo(arrayEmployees,len);
+	    if(index!=-1)
+	    {
+	        for(i=0;i<len;i++)
+	        {
+	            if(index == 0)
+	            {
+	                if(idInitiation > 0 && idInitiation < 1001)
+	                {
+	                	arrayEmployees[index].id = idInitiation;
+	                    id = arrayEmployees[index].id;
+
+	                }
+	                else
+	                {
+	                	id = 0;
+	                }
+
+	            }
+	            else
+	            {
+
+	                    id= arrayEmployees[index-1].id+1;
+
+
+	            }
+	        }
+	    }
+
+	    return id;
+}
+int menu(char message[],int option,char error[])
+{
+	printf("%s",message);
+	scanf("%d",&option);
+
+	return option;
+}

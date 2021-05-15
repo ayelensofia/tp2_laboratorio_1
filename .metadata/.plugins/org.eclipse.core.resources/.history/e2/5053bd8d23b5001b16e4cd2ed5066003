@@ -1,0 +1,171 @@
+
+
+#include <stdlib.h>
+#include "ArrayEmployees.h"
+#define LEN 1
+int main(void)
+{
+	setbuf(stdout,NULL);
+
+	Employee arrayEmployee[LEN]; //{{100,"miguel","gonzales",20.000,1,1},{200,"ayelen","carrasco",10.0005,3,1},{300,"sara","suarez",30.000,2,1},{400,"Ana","Gonzales",35.000,3,1}};
+	int option;
+	int subMenuOption;
+	char strOption[3];
+	int itCanPrint;
+	int itCanDelete;
+	int itCanSort;
+	int itCanModify;
+	char strId[3];
+	int itCanRegister;
+	int itCanInit;
+	int accountant;
+
+	accountant = 0;
+	//int accountant;
+	itCanInit = initEmployees(arrayEmployee,LEN);
+	printf("INIT %d\n",itCanInit);
+
+	do
+	{
+
+		option = Menu("1.ALTAS\n2.MODIFICAR\n3.BAJA\n4.INFORMAR\n5.SALIR\nIngrese opcion: ",strOption,"Ingrese opcion valida: ");
+		switch(option)
+		{
+		case 1:
+
+			itCanRegister = registerAnEmployee(arrayEmployee,LEN,1,accountant);
+			if(itCanRegister==1)
+			{
+				accountant++;
+				itCanPrint = printEmployee(arrayEmployee,LEN);
+				printf("PRINT %d\n",itCanPrint);
+				printf("Carga exitosa!\n");
+
+			}
+			else
+			{
+				printf("Espacio insuficiente\n");
+			}
+			break;
+		case 2:
+			itCanModify = getIdEmployeeModify("Ingrese id a modificar: ",strId,"Ingrese id existente: ","Ingrese opcion valida: ",arrayEmployee,LEN);
+			switch(itCanModify)
+			{
+			case 0:
+				printf("Modificacion cancelada\n");
+				break;
+			case -1:
+				printf("No se encontro id\n");
+				break;
+			case 1:
+				printf("Saliste de modificacion\n");
+				break;
+			}
+			break;
+		case 3:
+			itCanDelete = getIdEmployeeDelete("Ingrese id a eliminar: ",strId,"Ingrese id existente: ","Ingrese opcion valida: ",arrayEmployee,LEN);
+			if(itCanDelete == 1)
+			{
+				printf("Eliminacion exitosa\n");
+			}
+			else
+			{
+				printf("No se encontro id\n");
+			}
+			break;
+		case 4:
+			do
+			{
+				subMenuOption = Menu("1.Ordenar listado\n2.Total de los salarios\n3.Promedio de los salarios\n4.Cantidad de empleados que superan el salario promedio\n5.Volver\nIngrese opcion: ",strOption,"Ingrese opcion valida: ");
+				switch(subMenuOption)
+				{
+				case 1:
+
+					itCanSort = menuOrdenamiento("1.Ordenar por apellido\n2.Ordenar por sector\n3.Salir\nIngrese opcion: ",strOption,"Ingrese opcion valida: ",arrayEmployee,LEN,"1.Ordenar de forma Ascendente\n0.Ordenar de forma Descendente\n3.Volver\nIngrese opcion: ");
+					switch(itCanSort)
+					{
+					case 0:
+						printf("Ordenamiento cancelado\n");
+						break;
+					case -1:
+						printf("No se pudo ordenar\n");
+					break;
+
+					case 1:
+						printf("Saliste de ordenamiento\n");
+						break;
+
+					}
+					break;
+
+			  case 2:
+
+				itCanPrint = printTotalSalary(arrayEmployee,LEN);
+				if(itCanPrint==1)
+				{
+					printf("Informe exitoso!\n");
+				}
+				else
+				{
+					printf("No se pudo informar\n");
+				}
+				break;
+
+			  case 3:
+
+				itCanPrint = printAverageSalary(arrayEmployee,LEN);
+				if(itCanPrint==1)
+				{
+					printf("Informe exitoso!\n");
+				}
+				else
+				{
+					printf("No se pudo informar\n");
+				}
+				break;
+
+			case 4:
+
+				itCanPrint = printEmployeeExceedsAverageSalary(arrayEmployee,LEN);
+				if(itCanPrint==1)
+				{
+					printf("Informe exitoso!\n");
+				}
+				else
+				{
+					printf("No se pudo informar\n");
+				}
+				break;
+
+			case 5:
+
+				printf("Saliste de INFORMES\n");
+				break;
+
+			default:
+				printf("Ingrese opcion valida\n");
+			 }
+			}while(subMenuOption!=5);
+
+		break;
+
+		case 5:
+			printf("FIN DEL PROGRAMA\n");
+			break;
+		default:
+			printf("Ingrese opcion valida\n");
+		}
+	}while(option!=5);
+
+
+
+
+
+
+
+
+
+
+
+	return EXIT_SUCCESS;
+}

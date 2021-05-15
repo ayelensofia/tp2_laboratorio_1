@@ -1,0 +1,56 @@
+
+#ifndef EMPLOYEE_SECTOR_H_
+#define EMPLOYEE_SECTOR_H_
+
+#include "ArrayEmployees.h"
+#include "Sector.h"
+#define FREE 0
+#define OCCUPIED 1
+
+/**
+ * @fn Employee registerAnEmployee(Employee[], int, int, int)
+ * @brief Registra un empleado
+ *
+ * @param Array de empleados
+ * @param Tamaño del array
+ * @param Contador de empleados
+ * @param Id de inicio
+ * @return Devuelve un empleado cargado con todos sus datos
+ */
+Employee registerAnEmployee(Employee[],int,int,int,Sector[],int);
+
+/**
+ * @fn int loadEmployee(Employee[], int, int, int)
+ * @brief Carga a un empleado
+ *
+ * @param Array de empleados
+ * @param Tamaño del array
+ * @param Contador de empleados
+ * @param Id inicio
+ * @return Devuelve 1 si logro cargar los datos, caso contrario devuelve -1
+ */
+int loadEmployee(Employee[],int,int,int,Sector[],int);
+
+/**
+ * @fn int addEmployees(Employee[], int, int, char[], char[], float, int)
+ * @brief Añade a un array de empleados existente los valores recibidos como parametro en la primer posicion libre
+ *
+ * @param Array de empleados
+ * @param Tamaño del array
+ * @param Id del empleado
+ * @param Nombre del empleado
+ * @param Apellido del empleado
+ * @param Salario del empleado
+ * @param Sector del empleado
+ * @return Devuelve 0 si logro añadir, caso contrario devuelve -1
+ */
+
+int addEmployees(Employee[],int,int,char[],char[],float,int);
+
+int printAnEmployee_ASector(Employee,Sector);
+
+int printEmployees_Sectors(Employee[],int,Sector[],int);
+
+
+
+#endif /* EMPLOYEE_SECTOR_H_ */

@@ -1,0 +1,46 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "ArrayEmployees.h"
+#define T 4
+int main(void)
+{
+	setbuf(stdout,NULL);
+
+	//Employee listaEmpleados[T];
+	int option;
+	//int accountant;
+	//initEmployees(listaEmpleados,T);
+	do
+	{
+		option = menu("1.ALTAS\n2.MODIFICAR\n3.BAJA\n4.INFORMAR\n5.SALIR\nIngrese opcion: ",option,"Ingrese solo numeros: ");
+		switch(option)
+		{
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			printf("FIN DEL PROGRAMA\n");
+			break;
+		default:
+			printf("Ingrese opcion valida\n");
+		}
+	}while(option!=5);
+
+
+
+
+
+
+
+
+
+
+
+	return EXIT_SUCCESS;
+}

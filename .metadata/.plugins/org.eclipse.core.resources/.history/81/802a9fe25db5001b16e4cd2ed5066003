@@ -1,0 +1,116 @@
+#include "Employee_Sector.h"
+Employee registerAnEmployee(Employee arrayEmployee[],int lenEmployee,int idInitiation,int accountant,Sector arraySector[],int lenSector)
+{
+
+	Employee anEmployee;
+	char salary[10];
+	char sector[10];
+	anEmployee.id = 0;
+
+
+	anEmployee.id = generateId(accountant,idInitiation);
+	GetString("Ingrese nombre: ",anEmployee.name,"Ingrese solo letras: ");
+	GetString("Ingrese apellido: ",anEmployee.lastName,"Ingrese solo letras: ");
+	anEmployee.salary = GetFloat("Ingrese salario: ",salary,"Ingrese salario valido: ");
+	printSectors(arraySector,lenSector);
+	anEmployee.idSector = getIdSector("Ingrese id del sector: ",sector,"Ingrese id existente en la lista: ","Ingrese solo numeros: ",arraySector,lenSector);
+	anEmployee.isEmpty = OCCUPIED;
+
+	return anEmployee;
+}
+int loadEmployee(Employee arrayEmployee[],int len,int accountant,int idInitiation,Sector arraySector[],int lenSector)
+{
+	int i;
+	int index;
+	int returnValue;
+
+	returnValue = -1;
+	index = searchFreeEmployee(arrayEmployee,len);
+	if(index!=-1)
+	{
+		for(i=0;i<len;i++)
+		{
+
+			if(addEmployees(arrayEmployee,len,arrayEmployee[index].id,arrayEmployee[index].name,arrayEmployee[index].lastName,arrayEmployee[index].salary,arrayEmployee[index].idSector)==0)
+			{
+				arrayEmployee[index] = registerAnEmployee(arrayEmployee,len,idInitiation,accountant,arraySector,lenSector);
+				returnValue = 1;
+				break;
+			}
+		}
+	}
+
+
+	return returnValue;
+}
+int addEmployees(Employee arrayEmployee[],int len,int id,char name[],char lastName[],float salary,int idSector)
+{
+	int index;
+	int returnValue;
+	int i;
+
+	returnValue = -1;
+
+	index = searchFreeEmployee(arrayEmployee,len);
+
+	if(index!=-1)
+	{
+		for(i=0;i<len;i++)
+		{
+
+			arrayEmployee[index].id = id;
+			strcpy(arrayEmployee[index].name,name);
+			strcpy(arrayEmployee[index].lastName,lastName);
+			arrayEmployee[index].salary = salary;
+			arrayEmployee[index].idSector = idSector;
+			returnValue = 0;
+			break;
+
+
+		}
+	}
+
+	return returnValue;
+
+}
+int printAnEmployee_ASector(Employee anEmployee,Sector aSector)
+{
+	int itCanPrint;
+
+	itCanPrint = -1;
+
+	printf("%4d %15s %14s %15.3f %15s\n",aEmployee.id,
+										 aEmployee.name,
+										 aEmployee.lastName,
+										 aEmployee.salary,
+										 aSector.descripcion);
+	itCanPrint = 1;
+
+	return itCanPrint;
+}
+
+int printEmployees_Sectors(Employee arrayEmployee[],int lenEmployee,Sector arraySector[],int lenSector)
+{
+	int i;
+	int itCanPrint;
+	int j;
+
+	itCanPrint = -1;
+	for(i=0;i<lenEmployee;i++)
+	{
+		for(j=0;j<lenSector;j++)
+		{
+			if(arrayEmployee[i].idSector==arraySector[j].id && arrayEmployee[i].isEmpty == OCCUPIED)
+			{
+				printAnEmployee_ASector(arrayEmployee[i],arraySector[j]);
+				itCanPrint = 1;
+			}
+		}
+	}
+
+
+	return itCanPrint;
+
+}
+
+

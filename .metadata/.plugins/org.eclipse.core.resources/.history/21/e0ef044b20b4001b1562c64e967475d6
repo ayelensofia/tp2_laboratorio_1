@@ -1,0 +1,307 @@
+#include "ArrayEmployees.h"
+int initEmployees(Employee arrayEmployees[],int len)
+{
+	int i;
+	int retorno;
+
+	retorno = -1;
+	for(i=0;i<len;i++)
+	{
+		arrayEmployees[i].isEmpty = FREE;
+		retorno = 0;
+	}
+
+	return retorno;
+}
+int findEmployeeById(Employee arrayEmployees[],int len,int id)
+{
+	int i;
+	int index;
+
+	index = -1;
+
+	for(i=0;i<len;i++)
+	    {
+	        if(arrayEmployees[i].id == id)
+	        {
+	            index = i;
+	            break;
+
+	        }
+	    }
+
+	return index;
+
+}
+int searchFreeEmployee(Employee arrayEmployee[],int len)
+{
+	int i;
+	int index;
+	index = -1;
+
+	for(i=0; i<len; i++)
+	{
+		if(arrayEmployee[i].isEmpty == FREE)
+		{
+			index = i;
+			break;
+		}
+	}
+
+	return index;
+
+}
+int generateId(Employee arrayEmployees[],int len,int idInitiation)
+{
+	int i;
+	    int id;
+	    int index;
+
+	    index = searchFreeEmployee(arrayEmployees,len);
+	    if(index!=-1)
+	    {
+	        for(i=0;i<len;i++)
+	        {
+	            if(index == 0)
+	            {
+	                if(idInitiation > 0 && idInitiation < 1001)
+	                {
+	                	arrayEmployees[index].id = idInitiation;
+	                    id = arrayEmployees[index].id;
+
+	                }
+	                else
+	                {
+	                	id = 0;
+	                }
+
+	            }
+	            else
+	            {
+
+	                    id= arrayEmployees[index-1].id+1;
+
+
+	            }
+	        }
+	    }
+
+	    return id;
+}
+int getIdEmployeeDelete(char message[],char str[],char error[],Employee arrayEmployee[],int len)
+{
+	int returnValue;
+
+	int id;
+
+	int accountant;
+
+	accountant = 0;
+
+	returnValue = 1;
+
+	printEmployee(arrayEmployee,len);
+
+	id = GetInt(message,str,error);
+
+	while( removeEmployee(arrayEmployee,len,id) == -1)
+	{
+		accountant++;
+		if(accountant<4)
+		{
+			printf("%s",error);
+			scanf("%d",&id);
+		}
+		else
+		{
+			returnValue = -1;
+			break;
+		}
+
+
+	}
+
+
+	return returnValue;
+
+}
+int getIdEmployeeModify(char message[],char str[],char error[],Employee arrayEmployee[],int len)
+{
+	int returnValue;
+
+		int id;
+
+		int accountant;
+
+		accountant = 0;
+
+		returnValue = 1;
+
+		printEmployee(arrayEmployee,len);
+
+		id = GetInt(message,str,error);
+
+		while(modifyEmployee(arrayEmployee,len,id) == -1)
+		{
+			accountant++;
+			if(accountant<4)
+			{
+				printf("%s",error);
+				scanf("%d",&id);
+			}
+			else
+			{
+				returnValue = -1;
+				break;
+			}
+
+
+		}
+
+
+		return returnValue;
+
+}
+int modifyEmployee(Employee arrayEmployee[],int len,int id)
+{
+
+	int returnValue;
+	int i;
+	char userAnswer;
+	char strOption[3];
+	char auxName[11];
+	int opcion;
+
+		returnValue = -1;
+		id = searchIdEmployee(arrayEmployee,len,id);
+		if(id!=-1)
+		{
+			for(i=0;i<len;i++)
+				{
+					if(arrayEmployee[i].id==id)
+					{
+						printf("Se modificara a:");
+						printAemployee(arrayEmployee[i]);
+						userAnswer=GetChar("Realizar modificacion s/n: ",userAnswer,"Ingrese respuesta valida: ",'s','n');
+						if(userAnswer=='s')
+						{
+							do
+							{
+								opcion = Menu("Seleccione que desea modificar:\n1.Nombre\n2.Apellido\n3.Salario\n4.Sector\n5.Salir\nSeleccione opcion: ",strOption,"Ingrese opcion valida: ");
+								switch(opcion)
+								{
+									case 1:
+										GetString("Ingrese nombre nuevo: ",auxName,"Ingrese solo letras: ");
+										userAnswer=GetChar("Modificar nombre? s/n: ",userAnswer,"Ingrese respuesta valida: ",'s','n');
+										if(userAnswer=='s')
+										{
+											strcpy(arrayEmployee[i].name,auxName);
+											printf("Modificacion realizada!\n");
+										}
+										else
+										{
+											printf("Modificacion cancelada\n");
+										}
+										break;
+									case 5:
+										returnValue = 1;
+										break;
+								}
+
+							}while(opcion!=5);
+
+						}
+
+					}
+					else
+					{
+						returnValue = 0;
+					}
+			}
+
+		}
+
+
+
+
+		return returnValue;
+
+}
+int removeEmployee(Employee arrayEmployee[],int len,int id)
+{
+	int returnValue;
+	int i;
+
+	returnValue = -1;
+	id = searchIdEmployee(arrayEmployee,len,id);
+	for(i=0;i<len;i++)
+	{
+		if(arrayEmployee[i].id==id)
+		{
+			arrayEmployee[i].isEmpty = FREE;
+			returnValue = 1;
+			break;
+		}
+
+	}
+
+
+	return returnValue;
+
+
+}
+int searchIdEmployee(Employee arrayEmployee[],int len,int id)
+{
+	int i;
+	int returnId;
+
+	returnId = -1;
+
+	for(i=0;i<len;i++)
+	{
+		if(arrayEmployee[i].id == id && id > 0)
+		{
+			returnId = id;
+
+			break;
+		}
+
+	}
+
+	return returnId;
+}
+int printAemployee(Employee aEmployee)
+{
+	int returnValue;
+
+	returnValue = -1;
+
+	printf("%d %s %s %.2f %d\n",aEmployee.id,
+								aEmployee.name,
+								aEmployee.lastName,
+								aEmployee.salary,
+								aEmployee.sector);
+
+	returnValue = 1;
+
+
+	return returnValue;
+}
+int printEmployee(Employee arrayEmployee[],int len)
+{
+	int returnValue;
+	int i;
+
+	returnValue = -1;
+
+	for(i=0;i<len;i++)
+	{
+
+		if(arrayEmployee[i].isEmpty == OCCUPIED)
+		{
+			returnValue = printAemployee(arrayEmployee[i]);
+		}
+	}
+
+	return returnValue;
+}

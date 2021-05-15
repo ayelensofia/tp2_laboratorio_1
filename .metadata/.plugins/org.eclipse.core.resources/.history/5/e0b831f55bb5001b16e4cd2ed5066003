@@ -1,0 +1,14 @@
+#include "sector.h"
+int harcodearSector(Sector arraySector[],int len)
+{
+	int id[tam] = {1,2,3,4};
+	char descripcion[21][tam]= {"Primario","Secundario","Terciario","Cuaternario"};
+	int i;
+	for(i=0;i<tam;i++)
+	{
+		arraySector[i].
+
+	}
+}
+
+

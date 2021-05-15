@@ -1,0 +1,85 @@
+#include "sector.h"
+int harcodearSector(Sector arraySector[],int len)
+{
+	int ItCanHarcodear;
+	int id[len] = {1,2,3,4};
+	char descripcion[21][len]= {"Primario","Secundario","Terciario","Cuaternario"};
+	int i;
+	ItCanHarcodear = -1;
+
+	for(i=0;i<len;i++)
+	{
+		arraySector[i].id = id;
+		strcpy(arraySector[i].descripcion,descripcion);
+		ItCanHarcodear = 1;
+
+	}
+
+
+	return itCanHarcodear;
+}
+int printASector(Sector aSector)
+{
+	int itCanPrint;
+
+	itCanPrint = -1;
+
+	printf("%4d %15s",aSector.id,aSector.descripcion);
+
+	itCanPrint = 1;
+
+	return itCanPrint;
+}
+int printSectors(Sector arraySector[],int len)
+{
+	int i;
+	int itCanPrint;
+
+	itCanPrint = -1;
+
+	for(i=0;i<len;i++)
+	{
+		printASector(arraySector[i]);
+		itCanPrint = 1;
+	}
+
+	return itCanPrint;
+
+}
+int searchIdSector(Sector arraySector[],int len,int id)
+{
+	int i;
+	int returnId;
+
+	returnId = -1;
+
+	for(i=0;i<len;i++)
+	{
+		if(arraySector[i].id == id && id > 0)
+		{
+			returnId = id;
+
+			break;
+		}
+
+	}
+
+		return returnId;
+}
+
+int getIdSector(char message[],char str[],char error[],char errorOnlyNumbers[],Sector arraySector[],int len)
+{
+	int id;
+
+	printSectors(arraySector,len);
+
+	id=GetInt(message,str,errorOnlyNumbers);
+
+	while(searchIdSector(arraySector,len,id)==-1)
+	{
+		printf("%s",error);
+		scanf("%d",&id);
+	}
+
+	return id;
+}

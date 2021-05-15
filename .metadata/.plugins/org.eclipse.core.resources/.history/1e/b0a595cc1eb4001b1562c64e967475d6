@@ -1,0 +1,68 @@
+
+
+#include <stdlib.h>
+#include "ArrayEmployees.h"
+#define LEN 4
+int main(void)
+{
+	setbuf(stdout,NULL);
+
+	Employee arrayEmployee[LEN] = {{100,"miguel","gonzales",5.45,1,1},{200,"ayelen","carrasco",10.45,3,1},{300,"sara","suarez",20.45,2,1}};
+	int option;
+	char strOption[3];
+	int itCanPrint;
+	int itCanDelete;
+	char strId[3];
+	//int accountant;
+	//initEmployees(listaEmpleados,T);
+	do
+	{
+		option = Menu("1.ALTAS\n2.MODIFICAR\n3.BAJA\n4.INFORMAR\n5.SALIR\nIngrese opcion: ",strOption,"Ingrese solo numeros: ");
+		switch(option)
+		{
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			itCanDelete = getIdEmployeeDelete("Ingrese id a eliminar: ",strId,"Ingrese id existente: ",arrayEmployee,LEN);
+			if(itCanDelete == 1)
+			{
+				printf("Eliminacion exitosa\n");
+			}
+			else
+			{
+				printf("No se encontro id\n");
+			}
+			break;
+		case 4:
+			itCanPrint = printEmployee(arrayEmployee,LEN);
+			if(itCanPrint == 1)
+			{
+				printf("Se informo exitosamente!\n");
+			}
+			else
+			{
+				printf("Sin datos que informar\n");
+			}
+			break;
+		case 5:
+			printf("FIN DEL PROGRAMA\n");
+			break;
+		default:
+			printf("Ingrese opcion valida\n");
+		}
+	}while(option!=5);
+
+
+
+
+
+
+
+
+
+
+
+	return EXIT_SUCCESS;
+}
