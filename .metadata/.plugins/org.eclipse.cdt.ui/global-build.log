@@ -3842,3 +3842,15 @@ gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ArrayEmployees.o" "..\\src\\Arr
 gcc -o tp2_laboratorio_1.exe "src\\ArrayEmployees.o" "src\\gets.o" "src\\tp2_laboratorio_1.o" 
 Info: Nothing to build for tp2_laboratorio_1
 Info: Nothing to build for tp2_laboratorio_1
+14:19:01 **** Incremental Build of configuration Debug for project tp2_laboratorio_1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ArrayEmployees.o" "..\\src\\ArrayEmployees.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\gets.o" "..\\src\\gets.c" 
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\tp2_laboratorio_1.o" "..\\src\\tp2_laboratorio_1.c" 
+gcc -o tp2_laboratorio_1.exe "src\\ArrayEmployees.o" "src\\gets.o" "src\\tp2_laboratorio_1.o" 
+Info: Nothing to build for tp2_laboratorio_1
+14:19:49 **** Incremental Build of configuration Debug for project tp2_laboratorio_1 ****
+Info: Internal Builder is used for build
+gcc -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ArrayEmployees.o" "..\\src\\ArrayEmployees.c" 
+gcc -o tp2_laboratorio_1.exe "src\\ArrayEmployees.o" "src\\gets.o" "src\\tp2_laboratorio_1.o" 
+Info: Nothing to build for tp2_laboratorio_1

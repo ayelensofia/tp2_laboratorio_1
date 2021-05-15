@@ -618,8 +618,6 @@ float calculateAverageSalary(Employee arrayEmployee[],int len)
 	accountant=0;
 	acumulator = 0;
 
-	averageSalary = 0;
-
 	for(i=0;i<len;i++)
 	{
 		if(arrayEmployee[i].isEmpty==OCCUPIED)
@@ -631,11 +629,7 @@ float calculateAverageSalary(Employee arrayEmployee[],int len)
 		}
 
 	}
-	if(acumulator!=0)
-	{
-		averageSalary = calculateAverage(acumulator,accountant);
-	}
-
+	averageSalary = calculateAverage(acumulator,accountant);
 
 
 

@@ -631,11 +631,7 @@ float calculateAverageSalary(Employee arrayEmployee[],int len)
 		}
 
 	}
-	if(acumulator!=0)
-	{
-		averageSalary = calculateAverage(acumulator,accountant);
-	}
-
+	averageSalary = calculateAverage(acumulator,accountant);
 
 
 
